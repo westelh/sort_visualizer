@@ -15,7 +15,7 @@ ExternalProject_Add( allegro5
     GIT_TAG 5.2.3.0
     SOURCE_DIR ${ALLEGRO_DIR}
     BINARY_DIR ${ALLEGRO_DIR}
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${ALLEGRO_DIR}/install
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${ALLEGRO_DIR}/install -Wno-dev
     BUILD_COMMAND make
 )
 add_library(allegro SHARED IMPORTED)
