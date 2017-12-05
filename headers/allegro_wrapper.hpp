@@ -10,8 +10,8 @@ namespace allegro {
 	bool check_exit();
 	bool need_refresh();
 
-	void proc();
-	void fill_with(int r, int g, int b);
+	void internal_proc();
+	void fill_with(unsigned char r, unsigned char g, unsigned char b);
 }
 
 #endif // ALLEGRO_WRAPPER_HPP

@@ -35,11 +35,11 @@ bool allegro::need_refresh() {
 	else return false;
 }
 
-void allegro::fill_with(int r, int g, int b) {
+void allegro::fill_with(unsigned char r, unsigned char g, unsigned char b) {
 	al_clear_to_color(al_map_rgb(r, g, b));
 }
 
-void allegro::proc() {
+void allegro::internal_proc() {
 	al_flip_display();
 }
 

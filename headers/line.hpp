@@ -5,13 +5,13 @@
 #include "shape.hpp"
 
 class line: public shape {
-	std::atomic<float> length;
+	std::atomic_int length;
 public:
-	line(coord position = std::make_pair(300, 300), float radian = 0, float len = 500);
+	line(coord position = coord(300, 300), float radian = 0, int len = 500);
 
 	virtual void draw() noexcept override;
-	void set_length(float len) noexcept;
-	float get_length() const noexcept;
+	void set_length(int len) noexcept;
+	int get_length() const noexcept;
 };
 
 #endif // LINE_HPP
