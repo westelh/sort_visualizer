@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_primitives.h"
 #include "allegro_wrapper.hpp"
@@ -11,7 +12,9 @@ namespace {
 
 void allegro::init() {
 	al_init();
-    al_init_primitives_addon();
+	
+	if (al_is_system_installed() != true) throw std::runtime_error{"allegro initialization failed."};
+    if (al_init_primitives_addon() != true) throw std::runtime_error{"initializing allegro primitives module failed."};
 
     event_queue = al_create_event_queue();
     timer = al_create_timer(1.0/fps_limit);
@@ -19,6 +22,8 @@ void allegro::init() {
 }
 
 void allegro::show_window(int width, int height) {
+	al_set_new_display_flags(ALLEGRO_OPENGL);
+
 	if (display == nullptr) display = al_create_display(width, height);
     al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_start_timer(timer);
@@ -36,11 +41,16 @@ bool allegro::need_refresh() {
 }
 
 void allegro::fill_with(unsigned char r, unsigned char g, unsigned char b) {
-	al_clear_to_color(al_map_rgb(r, g, b));
+	auto col = al_map_rgb(r, g, b);
+	static_cast<void>(col);
+	//al_clear_to_color(col);
 }
 
 void allegro::internal_proc() {
 	al_flip_display();
 }
 
-
+void allegro::finalize() {
+	al_destroy_display(display);
+	al_uninstall_system();
+}

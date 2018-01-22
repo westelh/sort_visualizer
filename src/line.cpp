@@ -7,9 +7,9 @@ line::line(coord position, float rad, int len): shape(position, rad), length{len
 }
 
 void line::draw() noexcept {
-	al_draw_line(pos.first, pos.second, 
-		pos.first+length.load()*std::cos(rad.load()), 
-		pos.second+length.load()*std::sin(rad.load()), 
+	al_draw_line(static_cast<float>(pos.first), static_cast<float>(pos.second), 
+		static_cast<float>(pos.first)+static_cast<float>(length.load())*std::cos(rad.load()), 
+		static_cast<float>(pos.second)+static_cast<float>(length.load())*std::sin(rad.load()), 
 		al_map_rgb(static_cast<unsigned char>(r),
 					static_cast<unsigned char>(g),
 					static_cast<unsigned char>(b)), 5);
