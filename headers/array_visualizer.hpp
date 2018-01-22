@@ -40,7 +40,7 @@ array_visualizer<N>::array_visualizer(const std::shared_ptr<std::array<int, N>>&
 	}
 	std::shuffle(data->begin(), data->end(), std::mt19937{std::random_device{}()});
     for (size_t i=0; lines.size() > i; ++i) {
-        lines.at(i).set_coord(coord(pos.first+static_cast<int>(i*margin_coef), pos.second));
+        lines.at(i).set_coord(coord(pos.first+static_cast<int>(static_cast<float>(i)*margin_coef), pos.second));
         lines.at(i).set_angle(-pi<float>/2);
         lines.at(i).set_length(fixed_line_length(i));
     }
@@ -57,7 +57,7 @@ void array_visualizer<N>::draw() noexcept {
 
 template <int N>
 int array_visualizer<N>::fixed_line_length(size_t data_index) const noexcept {
-	return static_cast<int>(data_m->at(data_index)*data_scaling);
+	return static_cast<int>(static_cast<float>(data_m->at(data_index))*data_scaling);
 }
 
 #endif // ARRAY_VISUALIZER_HPP

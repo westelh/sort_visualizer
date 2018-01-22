@@ -12,6 +12,8 @@ namespace allegro {
 
 	void internal_proc();
 	void fill_with(unsigned char r, unsigned char g, unsigned char b);
+
+	void finalize();
 }
 
 #endif // ALLEGRO_WRAPPER_HPP
